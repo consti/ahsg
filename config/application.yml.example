@@ -1,0 +1,2 @@
+production:
+  SECRET_KEY_BASE: '8ee6b39b9f0a5dd611ac56938fba724dac15cca2bed68584e5389255eaf351b86d9584f0445af9fbe84e15654be4746eff78ffc992e3ffde0def6dd9b0c27956'

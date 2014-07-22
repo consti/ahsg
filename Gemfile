@@ -40,6 +40,12 @@ group :development do
   # Uberspace Setup
   gem 'ratchetify', github: 'consti/ratchetify'
   gem 'pry-rails', :group => :development
+  gem 'guard'
+  gem 'ruby_gntp'
+  gem 'guard-livereload'
+  gem 'guard-rspec'
+  gem 'rspec'
+  gem 'rspec-rails', '~> 3.0.0'
 end
 
 

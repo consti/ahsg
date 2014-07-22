@@ -15,7 +15,24 @@ class User < ActiveRecord::Base
             inclusion: { in: TITLES, message: "%{value} is not a valid title" },
             allow_blank: true
 
+  belongs_to :location
+  accepts_nested_attributes_for :location
+
+  before_validation :set_existing_location
+
+  def location
+    super || build_location
+  end
+
   protected
+
+  def set_existing_location
+    self.location = Location.where(google_place_id: location.google_place_id).
+      first_or_create do |l|
+        l.google_place_id = location.google_place_id
+        l.address         = location.address
+      end
+  end
 
   def school_year_end_cannot_be_before_school_year_begin
     return if self.school_year_end > self.school_year_begin

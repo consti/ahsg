@@ -9,6 +9,14 @@
   <div><%= f.label :last_name %><br />
   <%= f.text_field :last_name %></div>
 
+  <%= f.fields_for :location do |l| %>
+    <div><%= l.label :google_place_id %><br />
+    <%= l.text_field :google_place_id %></div>
+    
+    <div><%= l.label :address %><br />
+    <%= l.text_field :address %></div>
+  <% end %>
+
   <div><%= f.label :school_year_begin %><br />
   <%= date_select(resource_name, 'school_year_begin', discard_month: true, start_year: 80.years.ago.year, end_year: Date.today.year) %></div>
 

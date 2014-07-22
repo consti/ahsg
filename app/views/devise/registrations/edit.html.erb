@@ -15,6 +15,14 @@
   <div><%= f.label :last_name %><br />
   <%= f.text_field :last_name %></div>
 
+  <%= f.fields_for :location do |l| %>
+    <div><%= l.label :google_place_id %><br />
+    <%= l.text_field :google_place_id %></div>
+
+    <div><%= l.label :address %><br />
+    <%= l.text_field :address %></div>
+  <% end %>
+
   <div><%= f.label :nick_name %><br />
   <%= f.text_field :nick_name %></div>
 

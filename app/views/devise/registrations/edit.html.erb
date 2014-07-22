@@ -19,10 +19,10 @@
   <%= f.text_field :nick_name %></div>
 
   <div><%= f.label :school_year_begin %><br />
-  <%= f.number_field :school_year_begin %></div>
+  <%= date_select(resource_name, 'school_year_begin', discard_month: true, start_year: 80.years.ago.year, end_year: Date.today.year) %></div>
 
   <div><%= f.label :school_year_end %><br />
-  <%= f.number_field :school_year_end %></div>
+  <%= date_select(resource_name, 'school_year_end', discard_month: true, start_year: 80.years.ago.year, end_year: Date.today.year) %></div>
 
   <div><%= f.label :graduated %><br />
   <%= f.check_box :graduated %></div>
@@ -31,7 +31,7 @@
   <%= f.check_box :was_in_boarding_school %></div>
 
   <div><%= f.label :date_of_birth %><br />
-  <%= f.date_field :date_of_birth %></div>
+  <%= date_select(resource_name, 'date_of_birth', include_blank: true, start_year: 100.years.ago.year, end_year: 10.years.ago.year, order: [:day, :month, :year]) %></div>
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>

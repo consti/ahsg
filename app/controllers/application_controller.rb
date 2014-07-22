@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def update_sanitized_params
-    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(
+    permitted = [
       :email,
       :password,
       :password_confirmation,
@@ -21,7 +21,12 @@ class ApplicationController < ActionController::Base
       :was_in_boarding_school,
       :nick_name,
       :school_year_begin,
-      :school_year_end
-    )}
+      :school_year_end,
+      :current_password,
+      location_attributes: [:address, :id]
+    ]
+
+    devise_parameter_sanitizer.for(:account_update) {|u| u.permit(permitted) }
+    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(permitted) }
   end
 end

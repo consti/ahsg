@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
             inclusion: { in: TITLES, message: "%{value} is not a valid title" },
             allow_blank: true
 
-  belongs_to :location
+  belongs_to :location, counter_cache: true
   accepts_nested_attributes_for :location
 
   before_validation :set_existing_location
@@ -27,10 +27,11 @@ class User < ActiveRecord::Base
   protected
 
   def set_existing_location
-    self.location = Location.where(google_place_id: location.google_place_id).
+    self.location = Location.where(place_id: location.place_id).
       first_or_create do |l|
-        l.google_place_id = location.google_place_id
-        l.address         = location.address
+        [:place_id, :latitude, :longitude, :country, :city, :name].each do |k|
+          l.send("#{ k }=", location.send(k))
+        end
       end
   end
 

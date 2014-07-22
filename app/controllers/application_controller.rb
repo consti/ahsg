@@ -23,7 +23,14 @@ class ApplicationController < ActionController::Base
       :school_year_begin,
       :school_year_end,
       :current_password,
-      location_attributes: [:google_place_id, :address, :id]
+      location_attributes: [
+          :place_id,
+          :latitude,
+          :longitude,
+          :city,
+          :name,
+          :country
+        ]
     ]
 
     devise_parameter_sanitizer.for(:account_update) {|u| u.permit(permitted) }

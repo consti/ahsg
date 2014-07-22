@@ -17,16 +17,13 @@ ActiveRecord::Schema.define(version: 20140722132212) do
   enable_extension "plpgsql"
 
   create_table "locations", force: true do |t|
-    t.string   "google_place_id"
-    t.string   "address"
-    t.string   "location_name"
-    t.string   "phone_number"
-    t.string   "district"
+    t.string   "place_id"
+    t.string   "name"
     t.string   "city"
-    t.string   "postcode"
     t.string   "country"
-    t.decimal  "lat",             precision: 16, scale: 13
-    t.decimal  "lng",             precision: 16, scale: 13
+    t.decimal  "latitude",    precision: 16, scale: 13
+    t.decimal  "longitude",   precision: 16, scale: 13
+    t.integer  "users_count",                           default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,51 @@
+<%= form.fields_for :location do |l| %>
+
+  <div><%= label_tag :location%><br />
+  <%= text_field_tag :location, l.object.name, id: 'location_search' %>
+  <%= l.hidden_field :place_id %>
+  <%= l.hidden_field :name %>
+  <%= l.hidden_field :city %>
+  <%= l.hidden_field :country %>
+  <%= l.hidden_field :latitude %>
+  <%= l.hidden_field :longitude %>
+<% end %>
+
+<script src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places" type="text/javascript"></script>
+
+<script type="text/javascript">
+<!--
+  // Address Autocomplete
+  var input = document.getElementById('location_search');
+  var autocomplete = new google.maps.places.Autocomplete(input, { types: ['(cities)'] });
+  google.maps.event.addDomListener(input, 'keydown', function(e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+    }
+  });
+
+  var place;
+
+  // Autocomplete Listener
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    place = autocomplete.getPlace();
+
+    var componentForm = {
+      locality: ['long_name', 'user_location_attributes_city'],
+      country: ['long_name', 'user_location_attributes_country']
+    };
+
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if (componentForm[addressType]) {
+        var val = place.address_components[i][componentForm[addressType][0]];
+        document.getElementById(componentForm[addressType][1]).value = val;
+      }
+    }
+    document.getElementById("user_location_attributes_place_id").value = place.place_id;
+    document.getElementById("user_location_attributes_name").value = place.formatted_address;
+    document.getElementById("user_location_attributes_latitude").value = place.geometry.location.lat();
+    document.getElementById("user_location_attributes_longitude").value = place.geometry.location.lng();
+  });
+
+//-->
+</script>

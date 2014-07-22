@@ -1,4 +1,5 @@
 class Location < ActiveRecord::Base
-  validates :google_place_id, presence: true, uniqueness: true
-  validates :address, uniqueness: true, allow_blank: true
+  validates :place_id, presence: true, uniqueness: true
+  validates :latitude, :longitude, presence: true
+  validates :country, :city, :name, presence: true
 end

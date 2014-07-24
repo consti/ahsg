@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   before_validation :set_existing_location
 
+  mount_uploader :avatar, AvatarUploader
+
   def location
     super || build_location
   end

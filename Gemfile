@@ -30,6 +30,11 @@ gem 'devise'
 # Decorator Pattern
 gem 'draper', '~> 1.3'
 
+# Avatars and Photo upload
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+
 # Custom stuff for uberspace setup
 
 # uses config/unicorn.rb

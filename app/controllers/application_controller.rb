@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
 
   def update_sanitized_params
     permitted = [
+      :avatar,
+      :avatar_cache,
       :email,
       :password,
       :password_confirmation,

@@ -1,2 +1,14 @@
+AWS_ACCESS_KEY_ID: 'XXX'
+AWS_SECRET_ACCESS_KEY: 'XXX'
+AWS_S3_PUBLIC: true
+DEVISE_SECRET_KEY: 'XXX'
+development:
+  AWS_S3_DIRECTORY: 'XXX-bucketname'
+  AWS_S3_REGION: 'REGION'
+  AWS_S3_ENDPOINT: 'http://s3-REGION.amazonaws.com'
 production:
-  SECRET_KEY_BASE: '8ee6b39b9f0a5dd611ac56938fba724dac15cca2bed68584e5389255eaf351b86d9584f0445af9fbe84e15654be4746eff78ffc992e3ffde0def6dd9b0c27956'
+  AWS_S3_DIRECTORY: 'XXX-bucketname'
+  AWS_S3_REGION: 'eu-west-1'
+  AWS_S3_ENDPOINT: 'http://s3-eu-west-1.amazonaws.com'
+  DEVISE_SECRET_KEY: 'XXX'
+  SECRET_KEY_BASE: 'XXX'

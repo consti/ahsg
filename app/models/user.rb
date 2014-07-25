@@ -1,3 +1,4 @@
+require 'ahsg/utilities'
 class User < ActiveRecord::Base
   TITLES = ["BA", "BSc", "DI", "DI Dr.", "DI FH", "DI Mag.", "Dkfm.", "Dr.",
             "Ing.", "MA", "Mag.", "Mag. Dr.", "Mag. FH", "MAS", "MBA", "MD",
@@ -16,20 +17,36 @@ class User < ActiveRecord::Base
             allow_blank: true
 
   belongs_to :location, counter_cache: true
+  belongs_to :graduating_class, counter_cache: true
   accepts_nested_attributes_for :location
 
   before_validation :set_existing_location
+  after_validation :set_graduation_class
 
   mount_uploader :avatar, AvatarUploader
 
   delegate :latitude, :longitude, to: :location
+
+  scope :attended_in, ->(arg) {
+    range = Ahsg::Utilities.arg_to_range(arg)
+    where("school_year_begin <= :r_end AND "\
+          ":r_begin <= school_year_end", r_end: range.end, r_begin: range.first)
+  }
 
   def location
     super || build_location
   end
 
   def time_at_school
-    school_year_end.year - school_year_begin.year
+    year_begin - year_end
+  end
+
+  def year_begin
+    school_year_begin.year
+  end
+
+  def year_end
+    school_year_end.year
   end
 
   def to_s
@@ -41,6 +58,16 @@ class User < ActiveRecord::Base
   end
 
   protected
+
+  def set_graduation_class
+    case graduated
+    when true
+      self.graduating_class = GraduatingClass.where(
+        year: Date.new(year_end, 1, 1)).first_or_create
+    when false
+      self.graduating_class = nil
+    end
+  end
 
   def set_existing_location
     self.location = Location.where(place_id: location.place_id).
@@ -55,5 +82,4 @@ class User < ActiveRecord::Base
     return if self.school_year_end > self.school_year_begin
     self.errors.add(:school_year_end, 'cannot be before school year begin')
   end
-
 end

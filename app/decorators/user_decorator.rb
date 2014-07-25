@@ -64,8 +64,8 @@ class UserDecorator < Draper::Decorator
   def school_years
     h.raw h.content_tag(:ul, class: 'school_years') {
       h.safe_join(
-      [h.content_tag(:li, object.school_year_begin.year),
-       h.content_tag(:li, object.school_year_end.year)])
+      [h.content_tag(:li, object.year_begin),
+       h.content_tag(:li, object.year_end)])
     }
   end
 
@@ -78,7 +78,11 @@ class UserDecorator < Draper::Decorator
   end
 
   def graduated_tag
-    { text: 'Abi in Hogau', class: 'graduated_tag' }
+    {
+      text: h.link_to("Abschlussklasse #{ object.year_end }",
+                    object.graduating_class),
+      class: 'graduated_tag'
+    }
   end
 
   def tags

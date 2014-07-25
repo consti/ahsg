@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724123253) do
+ActiveRecord::Schema.define(version: 20140725103029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "graduating_classes", force: true do |t|
+    t.integer  "users_count", default: 0, null: false
+    t.date     "year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "locations", force: true do |t|
     t.string   "place_id"
@@ -53,9 +60,11 @@ ActiveRecord::Schema.define(version: 20140724123253) do
     t.date     "school_year_end"
     t.integer  "location_id"
     t.string   "avatar"
+    t.integer  "graduating_class_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["graduating_class_id"], name: "index_users_on_graduating_class_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

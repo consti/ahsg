@@ -22,8 +22,22 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  delegate :latitude, :longitude, to: :location
+
   def location
     super || build_location
+  end
+
+  def time_at_school
+    school_year_end.year - school_year_begin.year
+  end
+
+  def to_s
+    "#{ first_name } #{ last_name}"
+  end
+
+  def to_param
+    "#{ id }-#{ self.to_s.parameterize }"
   end
 
   protected

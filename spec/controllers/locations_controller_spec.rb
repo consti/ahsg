@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe LocationController, :type => :controller do
+RSpec.describe LocationsController, :type => :controller do
 
   describe "GET index" do
     it "returns http success" do
@@ -10,8 +10,9 @@ RSpec.describe LocationController, :type => :controller do
   end
 
   describe "GET show" do
+    let(:location){ Location.make! }
     it "returns http success" do
-      get :show
+      get :show, id: location
       expect(response).to be_success
     end
   end

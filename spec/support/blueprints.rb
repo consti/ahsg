@@ -18,3 +18,15 @@ User.blueprint do
   school_year_begin { object.school_year_end - rand(1..10).years }
   location
 end
+
+Comment.blueprint(:of_user) do
+  text { Faker::Lorem.sentence }
+  author
+  commentable { User.make }
+end
+
+Comment.blueprint do
+  text { Faker::Lorem.sentence }
+  author
+  commentable
+end

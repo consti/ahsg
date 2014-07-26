@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/consti/ratchetify.git
-  revision: cd0845e59bf5ac7baff9090ccc3f74a7579ded9e
+  revision: b6857e8ee6704fbd0c05f4c98d46f6451cf864da
   specs:
     ratchetify (1.0.2)
       capistrano (= 2.12.0)

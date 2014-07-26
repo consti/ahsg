@@ -24,6 +24,12 @@ class User < ActiveRecord::Base
 
   delegate :latitude, :longitude, to: :location
 
+  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :authored_comments,
+           foreign_key: :author_id,
+           class: Comment,
+           dependent: :destroy
+
   scope :attended_in, ->(arg) {
     range = Ahsg::Utilities.arg_to_range(arg)
     where("school_year_begin <= :r_end AND "\

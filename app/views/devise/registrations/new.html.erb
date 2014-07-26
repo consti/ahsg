@@ -7,14 +7,14 @@
   <div><%= f.label :avatar %><br />
   <%= f.file_field :avatar %>
   <%= f.hidden_field :avatar_cache %></div>
-  
+
   <div><%= f.label :first_name %><br />
   <%= f.text_field :first_name, autofocus: true %></div>
 
   <div><%= f.label :last_name %><br />
   <%= f.text_field :last_name %></div>
 
-  <%= render partial: 'location/form', locals: { form: f } %>
+  <%= render partial: 'locations/form', locals: { form: f } %>
 
   <div><%= f.label :school_year_begin %><br />
   <%= date_select(resource_name, 'school_year_begin', discard_month: true, start_year: 80.years.ago.year, end_year: Date.today.year) %></div>

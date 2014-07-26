@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'welcome#index'
 
   devise_for :users
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :graduating_classes, only: [:index]
   get 'class_of/:year' => 'graduating_classes#show', as: :graduating_class
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

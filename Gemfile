@@ -27,6 +27,9 @@ gem 'spring',        group: :development
 # Authentication
 gem 'devise'
 
+# Observer Pattern
+gem 'rails-observers'
+
 # Decorator Pattern
 gem 'draper', '~> 1.3'
 
@@ -45,7 +48,6 @@ gem 'pg'
 gem 'figaro'
 
 group :development do
-  gem 'awesome_print'
   # Uberspace Setup
   gem 'ratchetify', github: 'consti/ratchetify'
   gem 'pry-rails', :group => :development
@@ -53,8 +55,14 @@ group :development do
   gem 'ruby_gntp'
   gem 'guard-livereload'
   gem 'guard-rspec'
+end
+
+group :development, :test do
+  gem 'awesome_print'
   gem 'rspec'
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'machinist', '>= 2.0.0.beta2'
+  gem 'faker'
 end
 
 

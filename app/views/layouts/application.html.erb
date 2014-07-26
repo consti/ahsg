@@ -8,6 +8,10 @@
 </head>
 <body>
 <% if user_signed_in? %>
+  <%= link_to 'Althohenschwangauer', User %>
+  <%= link_to 'Abschlussklassen', GraduatingClass %>
+  <%= link_to 'Locations', Location %>
+
   <%= link_to 'Edit Account', edit_user_registration_path, :'data-no-turbolink' => '' %>
   <%= link_to 'Logout', destroy_user_session_path, :method=>'delete', :'data-no-turbolink' => '' %>
 <% else %>

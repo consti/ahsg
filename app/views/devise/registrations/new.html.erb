@@ -3,6 +3,11 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+  <%= image_tag(@user.avatar_url(:profile)) if @user.avatar? %>
+  <div><%= f.label :avatar %><br />
+  <%= f.file_field :avatar %>
+  <%= f.hidden_field :avatar_cache %></div>
+  
   <div><%= f.label :first_name %><br />
   <%= f.text_field :first_name, autofocus: true %></div>
 
@@ -16,6 +21,9 @@
 
   <div><%= f.label :school_year_end %><br />
   <%= date_select(resource_name, 'school_year_end', discard_month: true, start_year: 80.years.ago.year, end_year: Date.today.year) %></div>
+
+  <div><%= f.label :graduated %><br />
+  <%= f.check_box :graduated %></div>
 
   <div><%= f.label :was_in_boarding_school %><br />
   <%= f.check_box :was_in_boarding_school %></div>

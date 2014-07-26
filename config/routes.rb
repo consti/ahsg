@@ -2,8 +2,12 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   devise_for :users
-  resources :users, only: [:index, :show]
-  resources :graduating_classes, only: [:show]
+  resources :users, only: [:index, :show], path: '/alumnis'
+
+  resources :locations, only: [:index, :show], path: '/locations'
+
+  resources :graduating_classes, only: [:index]
+  get 'class_of/:year' => 'graduating_classes#show', as: :graduating_class
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

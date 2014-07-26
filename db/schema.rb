@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140725103029) do
+ActiveRecord::Schema.define(version: 20140726081658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "graduating_classes", force: true do |t|
     t.integer  "users_count", default: 0, null: false
-    t.date     "year"
+    t.integer  "year"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20140725103029) do
     t.string   "country"
     t.decimal  "latitude",    precision: 16, scale: 13
     t.decimal  "longitude",   precision: 16, scale: 13
-    t.integer  "users_count",                           default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "users_count",                           default: 0, null: false
   end
 
   create_table "users", force: true do |t|
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20140725103029) do
     t.string   "nick_name"
     t.date     "school_year_begin"
     t.date     "school_year_end"
-    t.integer  "location_id"
+    t.string   "location_id"
     t.string   "avatar"
     t.integer  "graduating_class_id"
   end

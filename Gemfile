@@ -21,9 +21,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
-
 # Authentication
 gem 'devise'
 
@@ -51,21 +48,19 @@ group :development do
   # Uberspace Setup
   gem 'ratchetify', github: 'consti/ratchetify'
   gem 'pry-rails', :group => :development
-  gem 'guard'
-  gem 'ruby_gntp'
-  gem 'guard-livereload'
-  gem 'guard-rspec'
 end
 
 group :development, :test do
   gem 'awesome_print'
-  gem 'rspec'
+  gem 'spring-commands-rspec'
   gem 'rspec-rails', '~> 3.0.0'
-  gem 'machinist', '>= 2.0.0.beta2'
   gem 'faker'
+  gem 'machinist', '>= 2.0.0.beta2'
+  gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem 'ruby_gntp'
+  gem 'rb-fsevent' if `uname` =~ /Darwin/
 end
-
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

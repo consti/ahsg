@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Commentable:
+  = @comment.commentable
+%p
+  %b Text:
+  = @comment.text
+%p
+  %b Author:
+  = @comment.author_id
+
+= link_to 'Edit', edit_comment_path(@comment)
+\|
+= link_to 'Back', comments_path

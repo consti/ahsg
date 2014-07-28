@@ -7,6 +7,7 @@ class GraduatingClassesController < ApplicationController
 
   def show
     @graduating_class = GraduatingClass.find_by(year: params[:year]).decorate
+    @comment = Comment.new(commentable: @graduating_class)
     @users = @graduating_class.users
   end
 end

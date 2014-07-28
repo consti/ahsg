@@ -2,5 +2,5 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, polymorphic: true
   belongs_to :author, class_name: 'User', foreign_key: :author_id
 
-  validates :text, :author, :commentable, presence: true
+  validates :author, :commentable, :text, presence: true
 end

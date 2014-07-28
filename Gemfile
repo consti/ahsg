@@ -24,6 +24,17 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Authentication
 gem 'devise'
 
+# Form (has rails g trask)
+gem 'simple_form'
+
+# Design (has rails g trask)
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+# LESS instead of CSS
+gem 'less-rails'
+gem 'therubyracer'
+# HAML (and haml-rails to set generator to HAML)
+gem 'haml-rails'
+
 # Observer Pattern
 gem 'rails-observers'
 

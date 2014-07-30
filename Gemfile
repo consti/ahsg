@@ -27,11 +27,8 @@ gem 'devise'
 # Form (has rails g trask)
 gem 'simple_form'
 
-# Design (has rails g trask)
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-# LESS instead of CSS
-gem 'less-rails'
-gem 'therubyracer'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 # HAML (and haml-rails to set generator to HAML)
 gem 'haml-rails'
 
